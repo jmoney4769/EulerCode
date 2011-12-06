@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class FactorialDigits {
 
-	public static BigInteger[] split(BigInteger fullNumber) {
+	private static BigInteger[] split(BigInteger fullNumber) {
 		
 		char[] array = fullNumber.toString().toCharArray();
 		BigInteger[] result = new BigInteger[array.length];
 		
 		for (int i = 0; i < array.length; i++) {
-			result[i] = BigInteger.valueOf((Integer.parseInt(Character.toString(array[i]))) - 1);
+			result[i] = new BigInteger(Character.toString((char) (array[i])));
 		}
 		return result;
 	}
@@ -33,7 +33,8 @@ public class FactorialDigits {
 		
 		int sum = 0;
 		ArrayList<Integer> array = new ArrayList<Integer>();
-		for (int i = 10; i < 9999999; i++) {
+		
+		for (int i = 10; i < 1000000; i++) {
 			if (FactorialDigits.checkIfFactEqualsNumber(new BigInteger(Integer.toString(i)))); 
 				array.add(i);
 		}
@@ -42,5 +43,6 @@ public class FactorialDigits {
 			System.out.println(array.get(i));
 		}
 		System.out.println(sum);
+		
 	}
 }
