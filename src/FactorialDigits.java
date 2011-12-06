@@ -35,7 +35,7 @@ public class FactorialDigits {
 		ArrayList<Integer> array = new ArrayList<Integer>();
 		
 		for (int i = 10; i < 1000000; i++) {
-			if (FactorialDigits.checkIfFactEqualsNumber(new BigInteger(Integer.toString(i)))); 
+			if (FactorialDigits.checkIfFactEqualsNumber(new BigInteger(Integer.toString(i))))
 				array.add(i);
 		}
 		for (int i = 0; i < array.size(); i++) {
