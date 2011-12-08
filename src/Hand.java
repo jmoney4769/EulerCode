@@ -5,7 +5,7 @@ import java.util.Collections;
 public class Hand {
 
 	private int rank;
-	private Card highCard;
+	private int highCard;
 	
 	public Hand(ArrayList<Card> array) {
 		
@@ -19,7 +19,7 @@ public class Hand {
 	public int getRank() {
 		return rank;
 	}
-	public Card getHighCard() {
+	public int getHighCard() {
 		return highCard;
 	}
 	public void setRank(ArrayList<Card> array) {
@@ -45,6 +45,40 @@ public class Hand {
 			return;
 		}
 		
+		int number = number(array);
+		if (number == 4) {
+			rank = 8;
+			return;
+		}
+		else if (number == 3) {
+			rank = 4;
+			return;
+		}
+		else if (number == 2) {
+			rank = 2;
+			return;
+		}
+		else if (number == 22) {
+			rank = 3;
+			return;
+		}
+		else if (number == 32) {
+			rank = 7;
+			return;
+		}
+		else {
+			if (number != 1) {
+				System.err.println("No rank lolwut");
+				System.exit(2);
+			}
+			int temp = 0;
+			for (int i = 0; i < 5; i++) {
+				if (temp < array.get(i).getValue())
+					temp = array.get(i).getValue();
+			}
+			rank = 1;
+			highCard = temp;
+		}
 	}
 
 	private boolean isStraight(ArrayList<Card> array) {
@@ -56,11 +90,48 @@ public class Hand {
 			return true;
 		return false;
 	}
-	private boolean three(ArrayList<Card> array) {
+	private int number(ArrayList<Card> array) {
 		
 		int ints[] = new int[5];
+		int howMany[] = new int[5];
 		
-		
-		return false;
+		for (int i = 0; i < 5; i++)
+			ints[i] = array.get(i).getValue();
+		for (int i = 0; i < 5; i++) {
+			int counter = 0;
+			for (int j = 0; j < 5; j++) {
+				if (ints[i] == ints[j]) {
+						counter++;
+				}				
+			}
+			howMany[i] = counter;
+			
+		}
+		boolean b = false;
+		boolean c = false;
+		int temp = 0;
+		for (int i = 0; i < 5; i++) {
+			if (howMany[i] > temp) {
+				temp = howMany[i];
+				if (howMany[i] == 2)
+					b = true;
+				if ((howMany[i] == 2) && b)
+					c = true;
+			}
+		}
+		if (temp == 4)
+			return 4;
+		else if ((temp == 2) && c) 
+			return 22;
+		else if (temp == 2)
+			return 2;
+		else if (temp == 1)
+			return 1;
+		else if ((temp == 3) && b) 
+			return 32;
+		else if (temp == 3) 
+			return 3;
+
+		return 0;
 	}
 }
