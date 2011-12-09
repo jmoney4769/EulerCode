@@ -1,1 +1,3 @@
-FactorialDigits.checkIfFactEqualsNumber(new java.math.BigInteger("145"))
+int i = 1, j = 3;
+double real = (double) i / j;
+real
